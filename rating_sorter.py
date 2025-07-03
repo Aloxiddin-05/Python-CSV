@@ -1,14 +1,9 @@
 import csv
-from pprint import pprint
 
 with open("students.csv") as csv_file:
     reader = csv.DictReader(csv_file)
-    
-    students = []
-    for i in reader:
-        students.append(i)
         
-    sorted_students = sorted(students,key=lambda x:int(x["score"]),reverse=True)
+    sorted_students = sorted(reader,key=lambda x:int(x["score"]),reverse=True)
     
 with open("rating.csv","w") as csv_file:
     fieldnames = ["rank","name","score"]
@@ -22,3 +17,5 @@ with open("rating.csv","w") as csv_file:
             "name":student["name"],
             "score":student["score"]
         })
+
+print(sorted_students)
